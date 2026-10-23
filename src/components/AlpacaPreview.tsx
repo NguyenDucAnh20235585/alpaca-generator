@@ -1,18 +1,23 @@
-import { defaultAlpaca, layerOrder } from "../data/alpaca";
+import { layerOrder, type AlpacaConfig } from "../data/alpaca";
 
-export default function AlpacaPreview() {
+type AlpacaPreviewProps = {
+  alpacaConfig: AlpacaConfig;
+};
+
+export default function AlpacaPreview({ alpacaConfig }: AlpacaPreviewProps) {
   return (
     <div
+      className="relative aspect-square w-full max-w-[720px]"
       role="img"
       aria-label="Alpaca preview"
-      className="relative aspect-square w-full max-w-[450px] overflow-hidden"
     >
-      {layerOrder.map((part) => (
+      {layerOrder.map((layer) => (
         <img
-          key={part}
-          src={`/alpaca/${part}/${defaultAlpaca[part]}.png`}
+          key={layer}
+          src={`/alpaca/${layer}/${alpacaConfig[layer]}.png`}
           alt=""
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 h-full w-full object-contain"
+          draggable={false}
         />
       ))}
     </div>
