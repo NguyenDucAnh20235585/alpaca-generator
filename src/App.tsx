@@ -2,7 +2,7 @@ import { useState } from "react";
 import AlpacaPreview from "./components/AlpacaPreview";
 import AlpacaActions from "./components/AlpacaActions";
 import { defaultAlpaca, layerOrder, type AlpacaConfig } from "./data/alpaca";
-import { alpacaOptions } from "./data/AlpacaOptions.tsx";
+import { alpacaOptions } from "./data/alpacaOptions.ts";
 
 function App() {
   const [alpacaConfig, setAlpacaConfig] = useState<AlpacaConfig>(defaultAlpaca);
