@@ -21,7 +21,9 @@ export default function AlpacaCustomizer({
 
   return (
     <section className="w-full">
-      <h2 className="mb-4 text-2xl font-bold">Accessorize the Alpaca</h2>
+      <h2 className="mb-4 text-xl font-bold uppercase">
+        Accessorise the Alpaca's
+      </h2>
 
       <div className="flex flex-wrap gap-3">
         {categoryOrder.map((category) => (
@@ -41,7 +43,7 @@ export default function AlpacaCustomizer({
         ))}
       </div>
 
-      <h2 className="mb-4 mt-8 text-2xl font-bold">Style</h2>
+      <h2 className="mb-4 mt-8 text-xl font-bold uppercase">Styles</h2>
 
       <div className="flex flex-wrap gap-3">
         {options.map((option) => (
