@@ -1,8 +1,17 @@
 import { useState } from "react";
+
 import AlpacaPreview from "./components/AlpacaPreview";
 import AlpacaActions from "./components/AlpacaActions";
-import { defaultAlpaca, layerOrder, type AlpacaConfig } from "./data/alpaca";
-import { alpacaOptions } from "./data/alpacaOptions.ts";
+import AlpacaCustomizer from "./components/AlpacaCustomizer";
+
+import {
+  defaultAlpaca,
+  layerOrder,
+  type AlpacaConfig,
+  type AlpacaCategory,
+} from "./data/alpaca";
+
+import { alpacaOptions } from "./data/alpacaOptions";
 
 function App() {
   const [alpacaConfig, setAlpacaConfig] = useState<AlpacaConfig>(defaultAlpaca);
@@ -20,11 +29,17 @@ function App() {
       const options = alpacaOptions[category];
 
       const randomIndex = Math.floor(Math.random() * options.length);
-
       randomConfig[category] = options[randomIndex] ?? defaultAlpaca[category];
     }
 
     setAlpacaConfig(randomConfig);
+  };
+
+  const handleOptionChange = (category: AlpacaCategory, option: string) => {
+    setAlpacaConfig((currentConfig) => ({
+      ...currentConfig,
+      [category]: option,
+    }));
   };
 
   return (
@@ -34,6 +49,11 @@ function App() {
       <AlpacaPreview alpacaConfig={alpacaConfig} />
 
       <AlpacaActions onRandom={handleRandom} onReset={handleReset} />
+
+      <AlpacaCustomizer
+        alpacaConfig={alpacaConfig}
+        onOptionChange={handleOptionChange}
+      />
     </main>
   );
 }
