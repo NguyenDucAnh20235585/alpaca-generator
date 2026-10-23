@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  layerOrder,
+  categoryOrder,
   type AlpacaCategory,
   type AlpacaConfig,
 } from "../data/alpaca";
@@ -24,16 +24,16 @@ export default function AlpacaCustomizer({
       <h2 className="mb-4 text-2xl font-bold">Accessorize the Alpaca</h2>
 
       <div className="flex flex-wrap gap-3">
-        {layerOrder.map((category) => (
+        {categoryOrder.map((category) => (
           <button
             key={category}
             type="button"
             onClick={() => setActiveCategory(category)}
             aria-pressed={activeCategory === category}
-            className={`cursor-pointer rounded-full border-2 px-4 py-2 capitalize transition-colors ${
+            className={`cursor-pointer rounded-full border-2 px-4 py-2 font-semibold capitalize ${
               activeCategory === category
-                ? "border-blue-600 bg-blue-600 text-white"
-                : "border-gray-300 hover:border-blue-600"
+                ? "border-violet-600 bg-violet-600 text-white"
+                : "border-slate-800 text-slate-900 hover:border-violet-600"
             }`}
           >
             {category}
@@ -50,10 +50,10 @@ export default function AlpacaCustomizer({
             type="button"
             onClick={() => onOptionChange(activeCategory, option)}
             aria-pressed={alpacaConfig[activeCategory] === option}
-            className={`cursor-pointer rounded-full border-2 px-4 py-2 capitalize transition-colors ${
+            className={`cursor-pointer rounded-full border-2 px-4 py-2 font-semibold capitalize ${
               alpacaConfig[activeCategory] === option
-                ? "border-blue-600 bg-blue-600 text-white"
-                : "border-gray-300 hover:border-blue-600"
+                ? "border-violet-600 bg-violet-600 text-white"
+                : "border-slate-800 text-slate-900 hover:border-violet-600"
             }`}
           >
             {option.replaceAll("-", " ")}

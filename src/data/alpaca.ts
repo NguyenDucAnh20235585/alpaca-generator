@@ -25,3 +25,15 @@ export const defaultAlpaca: AlpacaConfig = {
   eyes: "default",
   accessories: "headphone",
 };
+
+export const categoryOrder: AlpacaCategory[] = [
+  "backgrounds",
+  "ears",
+  "eyes",
+  "hair",
+  "leg",
+  "mouth",
+  "neck",
+  "accessories",
+  "nose",
+];

@@ -14,7 +14,7 @@ export default function AlpacaActions({
         onClick={onRandom}
         className="cursor-pointer rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
       >
-        Random
+        Randomize
       </button>
 
       <button
