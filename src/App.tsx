@@ -43,17 +43,25 @@ function App() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
-      <h1 className="text-3xl font-bold">Alpaca Generator</h1>
+    <main className="min-h-screen px-4 py-8 min-[800px]:px-8">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-12 text-center text-4xl font-bold uppercase">
+          Alpaca Generator
+        </h1>
 
-      <AlpacaPreview alpacaConfig={alpacaConfig} />
+        <div className="grid gap-10 min-[800px]:grid-cols-2 min-[800px]:items-start">
+          <div className="w-full max-w-[500px] justify-self-center">
+            <AlpacaPreview alpacaConfig={alpacaConfig} />
 
-      <AlpacaActions onRandom={handleRandom} onReset={handleReset} />
+            <AlpacaActions onRandom={handleRandom} onReset={handleReset} />
+          </div>
 
-      <AlpacaCustomizer
-        alpacaConfig={alpacaConfig}
-        onOptionChange={handleOptionChange}
-      />
+          <AlpacaCustomizer
+            alpacaConfig={alpacaConfig}
+            onOptionChange={handleOptionChange}
+          />
+        </div>
+      </div>
     </main>
   );
 }
