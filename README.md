@@ -17,7 +17,6 @@ This project was independently developed as a frontend practice task, inspired b
 - **Alpaca Preview:** Display an alpaca using multiple PNG layers.
 - **Customization:** Change individual parts such as hair, eyes, mouth, accessories, and backgrounds.
 - **Randomize:** Generate a random alpaca configuration.
-- **Reset:** Restore the default configuration.
 - **Download:** Export the customized alpaca as a 720×720 PNG image.
 
 ## Getting Started
@@ -71,7 +70,7 @@ The application uses React state and props to manage alpaca customization.
 - `App.tsx` manages the shared alpaca configuration and action handlers.
 - `AlpacaPreview.tsx` renders the selected image layers.
 - `AlpacaCustomizer.tsx` handles category and style selection.
-- `AlpacaActions.tsx` provides Randomize, Reset, and Download controls.
+- `AlpacaActions.tsx` provides Randomize and Download controls.
 - `src/data/` stores configuration types, layer order, and available options.
 
 The Download feature uses the Canvas API to combine selected image layers into a single PNG.
