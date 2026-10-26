@@ -32,10 +32,10 @@ export default function AlpacaCustomizer({
             type="button"
             onClick={() => setActiveCategory(category)}
             aria-pressed={activeCategory === category}
-            className={`cursor-pointer rounded-full border-2 px-4 py-2 font-semibold capitalize ${
+            className={`cursor-pointer rounded-full border-2 px-4 py-2 text-base font-bold capitalize transition-colors ${
               activeCategory === category
                 ? "border-violet-600 bg-violet-600 text-white"
-                : "border-slate-800 text-slate-900 hover:border-violet-600"
+                : "border-slate-800 text-slate-900 hover:border-violet-600 hover:bg-violet-600 hover:text-white"
             }`}
           >
             {category}

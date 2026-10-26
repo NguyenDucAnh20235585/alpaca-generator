@@ -7,12 +7,15 @@ export default function AlpacaActions({
   onRandom,
   onDownload,
 }: AlpacaActionsProps) {
+  const actionButtonClassName =
+    "min-w-0 flex-1 cursor-pointer rounded-sm bg-zinc-800 px-3 py-4 text-lg font-bold text-white transition-colors hover:bg-red-500";
+
   return (
-    <div className="mt-6 flex flex-wrap gap-4">
+    <div className="mt-5 flex w-full gap-4">
       <button
         type="button"
         onClick={onRandom}
-        className="cursor-pointer rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+        className={actionButtonClassName}
       >
         Randomize
       </button>
@@ -20,7 +23,7 @@ export default function AlpacaActions({
       <button
         type="button"
         onClick={onDownload}
-        className="cursor-pointer rounded-lg border border-gray-300 px-5 py-2 hover:bg-gray-100"
+        className={actionButtonClassName}
       >
         Download
       </button>
