@@ -8,7 +8,7 @@ export default function AlpacaActions({
   onDownload,
 }: AlpacaActionsProps) {
   const actionButtonClassName =
-    "min-w-0 flex-1 cursor-pointer rounded-sm bg-zinc-800 px-3 py-4 text-lg font-bold text-white transition-colors hover:bg-red-500";
+    "min-w-0 flex-1 cursor-pointer rounded-sm bg-[#2b2c34] px-3 py-5 text-xl font-bold text-white transition-colors hover:bg-[#e45858]";
 
   return (
     <div className="mt-5 flex w-full gap-4">

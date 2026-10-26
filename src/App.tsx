@@ -73,7 +73,7 @@ function App() {
   return (
     <main className="min-h-screen px-4 py-8 font-sans min-[800px]:px-8">
       <div className="mx-auto max-w-7xl">
-        <h1 className="mb-12 text-center text-4xl font-bold uppercase">
+        <h1 className="mb-12 text-center text-3xl font-bold uppercase min-[500px]:text-4xl min-[800px]:text-5xl">
           Alpaca Generator
         </h1>
 
@@ -87,10 +87,12 @@ function App() {
             />
           </div>
 
-          <AlpacaCustomizer
-            alpacaConfig={alpacaConfig}
-            onOptionChange={handleOptionChange}
-          />
+          <div className="w-full max-w-[500px] justify-self-center min-[800px]:max-w-none">
+            <AlpacaCustomizer
+              alpacaConfig={alpacaConfig}
+              onOptionChange={handleOptionChange}
+            />
+          </div>
         </div>
       </div>
     </main>
