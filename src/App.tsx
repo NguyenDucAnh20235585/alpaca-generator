@@ -75,7 +75,7 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen px-4 py-8 min-[800px]:px-8">
+    <main className="min-h-screen px-4 py-8 font-sans min-[800px]:px-8">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-12 text-center text-4xl font-bold uppercase">
           Alpaca Generator
