@@ -58,7 +58,10 @@ export default function AlpacaCustomizer({
                 : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white"
             }`}
           >
-            {option.replaceAll("-", " ")}
+            {option
+              .replace("darkblue", "dark blue")
+              .replace(/([a-z])(\d)/g, "$1 $2")
+              .replaceAll("-", " ")}
           </button>
         ))}
       </div>
