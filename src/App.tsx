@@ -16,10 +16,6 @@ import { alpacaOptions } from "./data/alpacaOptions";
 function App() {
   const [alpacaConfig, setAlpacaConfig] = useState<AlpacaConfig>(defaultAlpaca);
 
-  const handleReset = () => {
-    setAlpacaConfig({ ...defaultAlpaca });
-  };
-
   const handleRandom = () => {
     const randomConfig: AlpacaConfig = {
       ...defaultAlpaca,
@@ -87,7 +83,6 @@ function App() {
 
             <AlpacaActions
               onRandom={handleRandom}
-              onReset={handleReset}
               onDownload={handleDownload}
             />
           </div>
