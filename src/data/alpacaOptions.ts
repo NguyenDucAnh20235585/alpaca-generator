@@ -22,7 +22,7 @@ export const alpacaOptions = {
     "yellow70",
   ],
   ears: ["default", "tilt-backward", "tilt-forward"],
-  hair: ["default", "bang", "curls", "elegant", "fancy", "quiff", "short"],
+  hair: ["default", "bang", "curls", "elegant", "fancy", "short"],
   leg: [
     "default",
     "bubble-tea",
