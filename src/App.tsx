@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import AlpacaHeader from "./components/AlpacaHeader";
 import AlpacaPreview from "./components/AlpacaPreview";
 import AlpacaActions from "./components/AlpacaActions";
 import AlpacaCustomizer from "./components/AlpacaCustomizer";
@@ -73,9 +74,7 @@ function App() {
   return (
     <main className="min-h-screen px-4 py-8 font-sans min-[800px]:px-8">
       <div className="mx-auto max-w-7xl">
-        <h1 className="mb-12 text-center text-3xl font-bold uppercase min-[500px]:text-4xl min-[800px]:text-5xl">
-          Alpaca Generator
-        </h1>
+        <AlpacaHeader />
 
         <div className="grid gap-10 min-[800px]:grid-cols-2 min-[800px]:items-start">
           <div className="w-full max-w-[500px] justify-self-center">
