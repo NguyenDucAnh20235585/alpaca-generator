@@ -14,6 +14,8 @@ import {
 
 import { alpacaOptions } from "./data/alpacaOptions";
 
+import { type Language } from "./data/translations";
+
 type Theme = "light" | "dark";
 
 function App() {
@@ -87,10 +89,38 @@ function App() {
     setTheme((current) => (current === "light" ? "dark" : "light"));
   };
 
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem("alpaca-language");
+
+    if (savedLanguage === "vi" || savedLanguage === "ja") {
+      return savedLanguage;
+    }
+
+    return "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("alpaca-language", language);
+    document.documentElement.lang = language;
+  }, [language]);
+
   return (
-    <main className="min-h-screen bg-white px-4 py-8 font-sans text-[#2b2c34] transition-colors duration-200 dark:bg-[#181a20] dark:text-[#f5f5f5] min-[800px]:px-8">
+    <main
+      className={`
+    min-h-screen bg-white px-4 py-8
+    ${language === "vi" ? "font-vi" : "font-sans"}
+    text-[#2b2c34] transition-colors duration-200
+    dark:bg-[#181a20] dark:text-[#f5f5f5]
+    min-[800px]:px-8
+  `}
+    >
       <div className="mx-auto max-w-7xl">
-        <AlpacaHeader theme={theme} onToggleTheme={toggleTheme} />
+        <AlpacaHeader
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          language={language}
+          onLanguageChange={setLanguage}
+        />
 
         <div className="grid gap-10 min-[800px]:grid-cols-2 min-[800px]:items-start">
           <div className="w-full max-w-[500px] justify-self-center">
