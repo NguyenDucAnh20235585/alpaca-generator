@@ -1,4 +1,8 @@
-import { translations, type Language } from "../data/translations";
+import {
+  translations,
+  optionTranslations,
+  type Language,
+} from "../data/translations";
 
 import { useState } from "react";
 import {
@@ -61,10 +65,11 @@ export default function AlpacaCustomizer({
                 : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
-            {option
-              .replace("darkblue", "dark blue")
-              .replace(/([a-z])(\d)/g, "$1 $2")
-              .replaceAll("-", " ")}
+            {optionTranslations[language][option] ??
+              option
+                .replace("darkblue", "dark blue")
+                .replace(/([a-z])(\d)/g, "$1 $2")
+                .replaceAll("-", " ")}
           </button>
         ))}
       </div>
