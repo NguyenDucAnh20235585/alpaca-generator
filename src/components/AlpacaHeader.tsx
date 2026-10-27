@@ -73,7 +73,7 @@ export default function AlpacaHeader({
             aria-label={menuOpen ? "Close settings" : "Open settings"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
-            className="shrink-0 cursor-pointer rounded-md p-2 hover:bg-black/5 min-[450px]:absolute min-[450px]:right-0"
+            className="shrink-0 cursor-pointer rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10 min-[450px]:absolute min-[450px]:right-0"
           >
             <svg
               width="28"
@@ -109,7 +109,7 @@ export default function AlpacaHeader({
 
             <div
               id="alpaca-menu"
-              className="absolute top-full left-1/2 z-20 max-h-[calc(100dvh-100px)] w-screen -translate-x-1/2 overflow-y-auto border-b border-black/20 bg-white px-5 pt-12 pb-16 min-[800px]:hidden"
+              className="absolute top-full left-1/2 z-20 max-h-[calc(100dvh-100px)] w-screen -translate-x-1/2 overflow-y-auto border-b border-black/20 bg-white dark:border-white/15 dark:bg-[#292c35] px-5 pt-12 pb-16 min-[800px]:hidden"
             >
               <div className="flex items-center justify-between py-5">
                 <span className="font-bold uppercase">Language</span>
@@ -136,7 +136,19 @@ export default function AlpacaHeader({
             setMenuOpen(false);
           }
         }}
-        className="fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-[400px] overflow-y-auto rounded-xl border border-[#2b2c34]/20 bg-white p-6 text-[#2b2c34] shadow-xl backdrop:bg-black/55 min-[800px]:p-8"
+        className="
+          fixed inset-0 m-auto
+          max-h-[calc(100dvh-2rem)]
+          w-[calc(100%-2rem)] max-w-[400px]
+          overflow-y-auto rounded-xl
+          border border-[#2b2c34]/20
+          bg-white p-6 text-[#2b2c34] shadow-xl
+          backdrop:bg-black/55
+          dark:border-white/15
+          dark:bg-[#292c35]
+          dark:text-[#f5f5f5]
+          min-[800px]:p-8
+        "
       >
         <div>
           <div className="mb-6 flex items-center justify-between">
@@ -148,7 +160,7 @@ export default function AlpacaHeader({
               type="button"
               aria-label="Close settings"
               onClick={() => setMenuOpen(false)}
-              className="cursor-pointer rounded-md p-2 hover:bg-black/5"
+              className="cursor-pointer rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
             >
               <svg
                 width="24"
@@ -165,13 +177,13 @@ export default function AlpacaHeader({
             </button>
           </div>
 
-          <div className="border-t border-[#2b2c34]/15">
+          <div className="border-t border-[#2b2c34]/15 dark:border-white/15">
             <div className="flex items-center justify-between gap-4 py-5">
               <span className="font-bold">Language</span>
               <span>EN</span>
             </div>
 
-            <div className="border-t border-[#2b2c34]/15" />
+            <div className="border-t border-[#2b2c34]/15 dark:border-white/15" />
 
             <div className="flex items-center justify-between gap-4 py-5">
               <span className="font-bold">Dark Mode</span>
