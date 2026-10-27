@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function AlpacaHeader() {
+type AlpacaHeaderProps = {
+  theme: "light" | "dark";
+  onToggleTheme: () => void;
+};
+
+export default function AlpacaHeader({
+  theme,
+  onToggleTheme,
+}: AlpacaHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const settingsRef = useRef<HTMLDialogElement>(null);
 
-  // Esc: bật/tắt Settings
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape" || event.repeat) return;
@@ -108,8 +115,24 @@ export default function AlpacaHeader() {
               </div>
 
               <div className="flex items-center justify-between py-5">
-                <span className="font-bold uppercase">Theme</span>
-                <span className="font-bold">Light</span>
+                <span className="font-bold uppercase">Dark Mode</span>
+
+                <button
+                  type="button"
+                  role="switch"
+                  aria-label="Dark mode"
+                  aria-checked={theme === "dark"}
+                  onClick={onToggleTheme}
+                  className={`relative h-8 w-14 shrink-0 cursor-pointer rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6246ea] ${
+                    theme === "dark" ? "bg-[#6246ea]" : "bg-[#d1d5db]"
+                  }`}
+                >
+                  <span
+                    className={`absolute top-1 left-1 h-6 w-6 rounded-full bg-white shadow-sm transition-transform duration-200 ${
+                      theme === "dark" ? "translate-x-6" : "translate-x-0"
+                    }`}
+                  />
+                </button>
               </div>
             </div>
           </>
@@ -163,8 +186,24 @@ export default function AlpacaHeader() {
             <div className="border-t border-[#2b2c34]/15" />
 
             <div className="flex items-center justify-between gap-4 py-5">
-              <span className="font-bold">Theme</span>
-              <span>Light</span>
+              <span className="font-bold">Dark Mode</span>
+
+              <button
+                type="button"
+                role="switch"
+                aria-label="Dark mode"
+                aria-checked={theme === "dark"}
+                onClick={onToggleTheme}
+                className={`relative h-8 w-14 shrink-0 cursor-pointer rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6246ea] ${
+                  theme === "dark" ? "bg-[#6246ea]" : "bg-[#d1d5db]"
+                }`}
+              >
+                <span
+                  className={`absolute top-1 left-1 h-6 w-6 rounded-full bg-white shadow-sm transition-transform duration-200 ${
+                    theme === "dark" ? "translate-x-6" : "translate-x-0"
+                  }`}
+                />
+              </button>
             </div>
           </div>
         </div>
