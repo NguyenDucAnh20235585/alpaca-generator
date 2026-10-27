@@ -32,8 +32,8 @@ export default function AlpacaHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="relative z-30 mx-auto mb-12 w-full max-w-[500px] min-[800px]:max-w-none">
-      <div className="relative z-30 flex items-center justify-between gap-4 min-[450px]:justify-center min-[800px]:justify-between">
+    <header className="relative z-30 mx-auto mb-12 w-full max-w-[500px] min-[600px]:max-w-none">
+      <div className="relative z-30 flex items-center justify-between gap-4 min-[450px]:justify-center">
         <h1 className="text-2xl font-bold uppercase min-[800px]:text-4xl">
           Alpaca Generator
         </h1>
@@ -44,7 +44,7 @@ export default function AlpacaHeader() {
           aria-expanded={menuOpen}
           aria-controls="alpaca-menu"
           onClick={() => setMenuOpen((open) => !open)}
-          className="shrink-0 cursor-pointer rounded-md p-2 hover:bg-black/5 min-[450px]:absolute min-[450px]:right-0 min-[800px]:static"
+          className="shrink-0 cursor-pointer rounded-md p-2 hover:bg-black/5 min-[450px]:absolute min-[450px]:right-0"
         >
           <svg
             width="28"
@@ -54,12 +54,16 @@ export default function AlpacaHeader() {
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
+            strokeLinejoin="round"
             aria-hidden="true"
           >
             {menuOpen ? (
               <path d="M5 5L19 19M19 5L5 19" />
             ) : (
-              <path d="M4 6H20M4 12H20M4 18H20" />
+              <>
+                <path d="M10.3 2h3.4l.5 2.3 1.7.7 2-1.3 2.4 2.4-1.3 2 .7 1.7 2.3.5v3.4l-2.3.5-.7 1.7 1.3 2-2.4 2.4-2-1.3-1.7.7-.5 2.3h-3.4l-.5-2.3-1.7-.7-2 1.3-2.4-2.4 1.3-2-.7-1.7-2.3-.5v-3.4l2.3-.5.7-1.7-1.3-2 2.4-2.4 2 1.3 1.7-.7z" />
+                <circle cx="12" cy="12" r="3.2" />
+              </>
             )}
           </svg>
         </button>
