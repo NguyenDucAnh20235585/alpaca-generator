@@ -137,6 +137,7 @@ function App() {
             <AlpacaCustomizer
               alpacaConfig={alpacaConfig}
               onOptionChange={handleOptionChange}
+              language={language}
             />
           </div>
         </div>
