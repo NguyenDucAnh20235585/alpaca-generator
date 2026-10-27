@@ -35,7 +35,7 @@ export default function AlpacaCustomizer({
             className={`cursor-pointer rounded-full border-2 px-6 py-3 text-[15px] font-bold capitalize transition-colors ${
               activeCategory === category
                 ? "border-[#6246ea] bg-[#6246ea] text-white"
-                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white"
+                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
             {category}
@@ -55,7 +55,7 @@ export default function AlpacaCustomizer({
             className={`cursor-pointer rounded-full border-2 px-6 py-3 text-[15px] font-bold capitalize transition-colors ${
               alpacaConfig[activeCategory] === option
                 ? "border-[#6246ea] bg-[#6246ea] text-white"
-                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white"
+                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
             {option
