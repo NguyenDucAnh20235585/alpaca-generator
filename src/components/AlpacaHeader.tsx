@@ -42,6 +42,10 @@ export default function AlpacaHeader({
     const mediaQuery = window.matchMedia("(min-width: 800px)");
     const previousOverflow = document.body.style.overflow;
 
+    // Mobile: đảm bảo menu luôn xuất hiện trong vùng nhìn thấy, rồi khóa scroll sau khi đã đưa trang lên đầu.(fix soft lock)
+    if (!mediaQuery.matches) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     document.body.style.overflow = "hidden";
 
     const handleResize = () => {
