@@ -1,3 +1,9 @@
+import {
+  translations,
+  optionTranslations,
+  type Language,
+} from "../data/translations";
+
 import { useState } from "react";
 import {
   categoryOrder,
@@ -9,21 +15,22 @@ import { alpacaOptions } from "../data/alpacaOptions";
 type AlpacaCustomizerProps = {
   alpacaConfig: AlpacaConfig;
   onOptionChange: (category: AlpacaCategory, option: string) => void;
+  language: Language;
 };
 
 export default function AlpacaCustomizer({
   alpacaConfig,
   onOptionChange,
+  language,
 }: AlpacaCustomizerProps) {
   const [activeCategory, setActiveCategory] = useState<AlpacaCategory>("hair");
+  const t = translations[language];
 
   const options = alpacaOptions[activeCategory];
 
   return (
     <section className="w-full">
-      <h2 className="mb-4 text-xl font-bold uppercase">
-        Accessorise the Alpaca's
-      </h2>
+      <h2 className="mb-4 text-xl font-bold uppercase">{t.customize}</h2>
 
       <div className="flex flex-wrap gap-3">
         {categoryOrder.map((category) => (
@@ -35,15 +42,15 @@ export default function AlpacaCustomizer({
             className={`cursor-pointer rounded-full border-2 px-6 py-3 text-[15px] font-bold capitalize transition-colors ${
               activeCategory === category
                 ? "border-[#6246ea] bg-[#6246ea] text-white"
-                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white"
+                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
-            {category}
+            {t.categories[category]}
           </button>
         ))}
       </div>
 
-      <h2 className="mb-4 mt-8 text-xl font-bold uppercase">Styles</h2>
+      <h2 className="mb-4 mt-8 text-xl font-bold uppercase">{t.styles}</h2>
 
       <div className="flex flex-wrap gap-3">
         {options.map((option) => (
@@ -55,13 +62,14 @@ export default function AlpacaCustomizer({
             className={`cursor-pointer rounded-full border-2 px-6 py-3 text-[15px] font-bold capitalize transition-colors ${
               alpacaConfig[activeCategory] === option
                 ? "border-[#6246ea] bg-[#6246ea] text-white"
-                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white"
+                : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
-            {option
-              .replace("darkblue", "dark blue")
-              .replace(/([a-z])(\d)/g, "$1 $2")
-              .replaceAll("-", " ")}
+            {optionTranslations[language][option] ??
+              option
+                .replace("darkblue", "dark blue")
+                .replace(/([a-z])(\d)/g, "$1 $2")
+                .replaceAll("-", " ")}
           </button>
         ))}
       </div>

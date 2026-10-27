@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+import AlpacaHeader from "./components/AlpacaHeader";
 import AlpacaPreview from "./components/AlpacaPreview";
 import AlpacaActions from "./components/AlpacaActions";
 import AlpacaCustomizer from "./components/AlpacaCustomizer";
@@ -12,6 +13,10 @@ import {
 } from "./data/alpaca";
 
 import { alpacaOptions } from "./data/alpacaOptions";
+
+import { type Language } from "./data/translations";
+
+type Theme = "light" | "dark";
 
 function App() {
   const [alpacaConfig, setAlpacaConfig] = useState<AlpacaConfig>(defaultAlpaca);
@@ -70,12 +75,52 @@ function App() {
     }));
   };
 
+  const [theme, setTheme] = useState<Theme>(() => {
+    return localStorage.getItem("alpaca-theme") === "dark" ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+
+    localStorage.setItem("alpaca-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((current) => (current === "light" ? "dark" : "light"));
+  };
+
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem("alpaca-language");
+
+    if (savedLanguage === "vi" || savedLanguage === "ja") {
+      return savedLanguage;
+    }
+
+    return "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("alpaca-language", language);
+    document.documentElement.lang = language;
+  }, [language]);
+
   return (
-    <main className="min-h-screen px-4 py-8 font-sans min-[800px]:px-8">
+    <main
+      className={`
+    min-h-screen bg-white px-4 py-8
+    ${language === "vi" ? "font-vi" : "font-sans"}
+    text-[#2b2c34] transition-colors duration-200
+    dark:bg-[#181a20] dark:text-[#f5f5f5]
+    min-[800px]:px-8
+  `}
+    >
       <div className="mx-auto max-w-7xl">
-        <h1 className="mb-12 text-center text-3xl font-bold uppercase min-[500px]:text-4xl min-[800px]:text-5xl">
-          Alpaca Generator
-        </h1>
+        <AlpacaHeader
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          language={language}
+          onLanguageChange={setLanguage}
+        />
 
         <div className="grid gap-10 min-[800px]:grid-cols-2 min-[800px]:items-start">
           <div className="w-full max-w-[500px] justify-self-center">
@@ -84,6 +129,7 @@ function App() {
             <AlpacaActions
               onRandom={handleRandom}
               onDownload={handleDownload}
+              language={language}
             />
           </div>
 
@@ -91,6 +137,7 @@ function App() {
             <AlpacaCustomizer
               alpacaConfig={alpacaConfig}
               onOptionChange={handleOptionChange}
+              language={language}
             />
           </div>
         </div>
