@@ -129,6 +129,7 @@ function App() {
             <AlpacaActions
               onRandom={handleRandom}
               onDownload={handleDownload}
+              language={language}
             />
           </div>
 

@@ -1,12 +1,18 @@
+import { translations, type Language } from "../data/translations";
+
 type AlpacaActionsProps = {
   onRandom: () => void;
   onDownload: () => void;
+  language: Language;
 };
 
 export default function AlpacaActions({
   onRandom,
   onDownload,
+  language,
 }: AlpacaActionsProps) {
+  const t = translations[language];
+
   const actionButtonClassName =
     "min-w-0 flex-1 cursor-pointer rounded-sm bg-[#2b2c34] px-3 py-5 text-xl font-bold text-white transition-colors hover:bg-[#e45858] dark:bg-[#3b4050] dark:hover:bg-[#e45858]";
 
@@ -17,7 +23,7 @@ export default function AlpacaActions({
         onClick={onRandom}
         className={actionButtonClassName}
       >
-        Randomize
+        {t.randomize}
       </button>
 
       <button
@@ -25,7 +31,7 @@ export default function AlpacaActions({
         onClick={onDownload}
         className={actionButtonClassName}
       >
-        Download
+        {t.download}
       </button>
     </div>
   );
