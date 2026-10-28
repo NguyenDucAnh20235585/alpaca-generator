@@ -10,6 +10,7 @@ import useDownload from "./hooks/useDownload";
 import useTheme from "./hooks/useTheme";
 
 import { type Language } from "./data/translations";
+import i18n from "./i18n";
 
 function App() {
   const { alpacaConfig, handleRandom, handleOptionChange } = useAlpacaConfig();
@@ -27,8 +28,7 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("alpaca-language", language);
-    document.documentElement.lang = language;
+    void i18n.changeLanguage(language);
   }, [language]);
 
   return (
@@ -56,7 +56,6 @@ function App() {
             <AlpacaActions
               onRandom={handleRandom}
               onDownload={handleDownload}
-              language={language}
             />
           </div>
 
@@ -64,7 +63,6 @@ function App() {
             <AlpacaCustomizer
               alpacaConfig={alpacaConfig}
               onOptionChange={handleOptionChange}
-              language={language}
             />
           </div>
         </div>
