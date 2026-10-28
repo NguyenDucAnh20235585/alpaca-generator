@@ -1,14 +1,16 @@
 import type { Language } from "../data/translations";
+import { useTranslation } from "react-i18next";
 
-type LanguageSelectorProps = {
-  language: Language;
-  onLanguageChange: (language: Language) => void;
-};
+export default function LanguageSelector() {
+  const { i18n } = useTranslation();
 
-export default function LanguageSelector({
-  language,
-  onLanguageChange,
-}: LanguageSelectorProps) {
+  const language: Language =
+    i18n.language === "vi" || i18n.language === "ja" ? i18n.language : "en";
+
+  const onLanguageChange = (nextLanguage: Language) => {
+    void i18n.changeLanguage(nextLanguage);
+  };
+
   return (
     <select
       aria-label="Language"

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import LanguageSelector from "./LanguageSelector";
-import type { Language } from "../data/translations";
 import { useTranslation } from "react-i18next";
 
 import ThemeSwitch from "./ThemeSwitch";
@@ -8,15 +7,11 @@ import ThemeSwitch from "./ThemeSwitch";
 type AlpacaHeaderProps = {
   theme: "light" | "dark";
   onToggleTheme: () => void;
-  language: Language;
-  onLanguageChange: (language: Language) => void;
 };
 
 export default function AlpacaHeader({
   theme,
   onToggleTheme,
-  language,
-  onLanguageChange,
 }: AlpacaHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const settingsRef = useRef<HTMLDialogElement>(null);
@@ -126,10 +121,7 @@ export default function AlpacaHeader({
               <div className="flex items-center justify-between gap-4 py-5">
                 <span className="font-bold">{t("language")}</span>
 
-                <LanguageSelector
-                  language={language}
-                  onLanguageChange={onLanguageChange}
-                />
+                <LanguageSelector />
               </div>
 
               <div className="flex items-center justify-between py-5">
@@ -197,10 +189,7 @@ export default function AlpacaHeader({
             <div className="flex items-center justify-between gap-4 py-5">
               <span className="font-bold">{t("language")}</span>
 
-              <LanguageSelector
-                language={language}
-                onLanguageChange={onLanguageChange}
-              />
+              <LanguageSelector />
             </div>
 
             <div className="border-t border-[#2b2c34]/15 dark:border-white/15" />
