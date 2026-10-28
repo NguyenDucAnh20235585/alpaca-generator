@@ -1,8 +1,18 @@
 # Alpaca Generator
 
-A simple Alpaca Image Generator built with React, TypeScript, Vite, and Tailwind CSS v4.
+A responsive Alpaca Generator built with React, TypeScript, Vite, and Tailwind CSS.
+Users can customize an alpaca, generate random combinations, and download their creations as PNG images.
+**Live Demo:** https://alpaca-generator-eosin.vercel.app/
 
-This project was independently developed as a frontend practice task, inspired by the [Alpaca Generator](https://alpaca-image-generator-beta.vercel.app/).
+## Features
+
+- **Alpaca Customization:** Customize different parts of an alpaca, including hair, eyes, ears, mouth, accessories, and backgrounds.
+- **Randomize:** Generate random combinations of available styles.
+- **Download:** Export the customized alpaca as a 720 × 720 PNG using the HTML Canvas API.
+- **Responsive Design:** Layouts optimized for mobile, tablet, and desktop.
+- **Dark Mode:** Switch between light and dark themes, with preferences saved in localStorage.
+- **Multilingual Support:** English, Vietnamese, and Japanese (Hiragana/Katakana) UI translations.
+- **Settings:** Responsive settings panel on mobile and centered modal on tablet/desktop.
 
 ## Tech Stack
 
@@ -11,21 +21,36 @@ This project was independently developed as a frontend practice task, inspired b
 - Vite
 - Tailwind CSS v4
 - HTML Canvas API
+- Local Storage API
 
-## Features
+## Project Structure
 
-- **Alpaca Preview:** Display an alpaca using multiple PNG layers.
-- **Customization:** Change individual parts such as hair, eyes, mouth, accessories, and backgrounds.
-- **Randomize:** Generate a random alpaca configuration.
-- **Download:** Export the customized alpaca as a 720×720 PNG image.
+```text
+src/
+├── components/
+│   ├── AlpacaHeader.tsx
+│   ├── AlpacaPreview.tsx
+│   ├── AlpacaCustomizer.tsx
+│   ├── AlpacaActions.tsx
+│   ├── ThemeSwitch.tsx
+│   └── LanguageSelector.tsx
+├── data/
+│   ├── alpaca.ts
+│   ├── alpacaOptions.ts
+│   └── translations.ts
+├── App.tsx
+└── index.css
+public/
+└── alpaca/
+```
 
 ## Getting Started
 
-**Requirements:** Node.js and npm.
-
-Install dependencies:
+Clone the repository and install dependencies:
 
 ```bash
+git clone <repository-url>
+cd alpaca-generator
 npm install
 ```
 
@@ -35,50 +60,48 @@ Start the development server:
 npm run dev
 ```
 
-Other commands:
+Build for production:
 
 ```bash
 npm run build
+```
+
+Run ESLint:
+
+```bash
 npm run lint
-npm run preview
 ```
 
-## Project Structure
+## How It Works
 
-```text
-src/
-├── components/
-│   ├── AlpacaPreview.tsx
-│   ├── AlpacaCustomizer.tsx
-│   └── AlpacaActions.tsx
-├── data/
-│   ├── alpaca.ts
-│   └── alpacaOptions.ts
-├── App.tsx
-├── index.css
-└── main.tsx
+### Alpaca Customization
 
-public/
-├── alpaca/
-└── favicon.svg
-```
+The alpaca is rendered using multiple transparent PNG layers. Each customization option changes the corresponding layer while preserving the others.
 
-## Architecture
+### Randomize
 
-The application uses React state and props to manage alpaca customization.
+The Randomize feature selects a random valid option for each category and updates the alpaca configuration.
 
-- `App.tsx` manages the shared alpaca configuration and action handlers.
-- `AlpacaPreview.tsx` renders the selected image layers.
-- `AlpacaCustomizer.tsx` handles category and style selection.
-- `AlpacaActions.tsx` provides Randomize and Download controls.
-- `src/data/` stores configuration types, layer order, and available options.
+### Download
 
-The Download feature uses the Canvas API to combine selected image layers into a single PNG.
+The Download feature uses the HTML Canvas API to combine all selected image layers into a single PNG file.
 
-## Reference & Assets
+### Dark Mode
 
-Reference: [victorcodess/alpaca-image-generator](https://github.com/victorcodess/alpaca-image-generator)
+The current theme is managed through React state. Tailwind CSS applies theme-specific styles, and the selected preference is stored in localStorage.
 
-The implementation was developed separately from the reference source. The PNG assets originate from the reference project. Their redistribution permissions have not yet been verified.
+### Multilingual Support
 
-This repository is intended for private educational and practice use.
+The application uses a translation dictionary for English, Vietnamese, and Japanese(though it might be incorrect since my Japanese isn't that great).
+React updates the displayed text according to the selected language without changing the underlying alpaca configuration or asset filenames.
+Language preferences are saved in localStorage.
+
+### Responsive Settings
+
+On mobile, Settings opens as a panel below the header. On tablet and desktop, Settings opens in a centered modal with a dimmed backdrop.
+The application also supports the Escape key as a shortcut to toggle Settings.
+
+## Development Status
+
+Core alpaca customization, randomization, downloading, responsive layouts, Dark Mode, and multilingual UI support have been implemented.
+Final testing and responsive behavior refinements are ongoing.

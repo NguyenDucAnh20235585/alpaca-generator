@@ -5,36 +5,15 @@ import AlpacaPreview from "./components/AlpacaPreview";
 import AlpacaActions from "./components/AlpacaActions";
 import AlpacaCustomizer from "./components/AlpacaCustomizer";
 
-import {
-  defaultAlpaca,
-  layerOrder,
-  type AlpacaConfig,
-  type AlpacaCategory,
-} from "./data/alpaca";
-
-import { alpacaOptions } from "./data/alpacaOptions";
+import useAlpacaConfig from "./hooks/useAlpacaConfig";
 
 import { type Language } from "./data/translations";
+import { layerOrder } from "./data/alpaca";
 
 type Theme = "light" | "dark";
 
 function App() {
-  const [alpacaConfig, setAlpacaConfig] = useState<AlpacaConfig>(defaultAlpaca);
-
-  const handleRandom = () => {
-    const randomConfig: AlpacaConfig = {
-      ...defaultAlpaca,
-    };
-
-    for (const category of layerOrder) {
-      const options = alpacaOptions[category];
-
-      const randomIndex = Math.floor(Math.random() * options.length);
-      randomConfig[category] = options[randomIndex] ?? defaultAlpaca[category];
-    }
-
-    setAlpacaConfig(randomConfig);
-  };
+  const { alpacaConfig, handleRandom, handleOptionChange } = useAlpacaConfig();
 
   const handleDownload = async () => {
     const canvas = document.createElement("canvas");
@@ -66,13 +45,6 @@ function App() {
       console.error("Failed to download alpaca:", error);
       alert("Unable to download alpaca image.");
     }
-  };
-
-  const handleOptionChange = (category: AlpacaCategory, option: string) => {
-    setAlpacaConfig((currentConfig) => ({
-      ...currentConfig,
-      [category]: option,
-    }));
   };
 
   const [theme, setTheme] = useState<Theme>(() => {
