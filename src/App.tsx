@@ -7,28 +7,14 @@ import AlpacaCustomizer from "./components/AlpacaCustomizer";
 
 import useAlpacaConfig from "./hooks/useAlpacaConfig";
 import useDownload from "./hooks/useDownload";
+import useTheme from "./hooks/useTheme";
 
 import { type Language } from "./data/translations";
-
-type Theme = "light" | "dark";
 
 function App() {
   const { alpacaConfig, handleRandom, handleOptionChange } = useAlpacaConfig();
   const { handleDownload } = useDownload(alpacaConfig);
-
-  const [theme, setTheme] = useState<Theme>(() => {
-    return localStorage.getItem("alpaca-theme") === "dark" ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-
-    localStorage.setItem("alpaca-theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((current) => (current === "light" ? "dark" : "light"));
-  };
+  const { theme, toggleTheme } = useTheme();
 
   const [language, setLanguage] = useState<Language>(() => {
     const savedLanguage = localStorage.getItem("alpaca-language");
