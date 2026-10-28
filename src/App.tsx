@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import useLanguage from "./hooks/useLanguage";
 
 import AlpacaHeader from "./components/AlpacaHeader";
 import AlpacaPreview from "./components/AlpacaPreview";
@@ -13,13 +13,13 @@ function App() {
   const { alpacaConfig, handleRandom, handleOptionChange } = useAlpacaConfig();
   const { handleDownload } = useDownload(alpacaConfig);
   const { theme, toggleTheme } = useTheme();
-  const { i18n } = useTranslation();
+  const { language } = useLanguage();
 
   return (
     <main
       className={`
         min-h-screen bg-white px-4 py-8
-        ${i18n.language === "vi" ? "font-vi" : "font-sans"}
+        ${language === "vi" ? "font-vi" : "font-sans"}
         text-[#2b2c34] transition-colors duration-200
         dark:bg-[#181a20] dark:text-[#f5f5f5]
         min-[800px]:px-8
