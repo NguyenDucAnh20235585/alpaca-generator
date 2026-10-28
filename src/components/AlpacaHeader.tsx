@@ -1,25 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import LanguageSelector from "./LanguageSelector";
-import { translations, type Language } from "../data/translations";
+import { useTranslation } from "react-i18next";
 
 import ThemeSwitch from "./ThemeSwitch";
 
 type AlpacaHeaderProps = {
   theme: "light" | "dark";
   onToggleTheme: () => void;
-  language: Language;
-  onLanguageChange: (language: Language) => void;
 };
 
 export default function AlpacaHeader({
   theme,
   onToggleTheme,
-  language,
-  onLanguageChange,
 }: AlpacaHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const settingsRef = useRef<HTMLDialogElement>(null);
-  const t = translations[language];
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -123,16 +119,13 @@ export default function AlpacaHeader({
               className="absolute top-full left-1/2 z-20 max-h-[calc(100dvh-100px)] w-screen -translate-x-1/2 overflow-y-auto border-b border-black/20 bg-white dark:border-white/15 dark:bg-[#292c35] px-5 pt-12 pb-16 min-[800px]:hidden"
             >
               <div className="flex items-center justify-between gap-4 py-5">
-                <span className="font-bold">{t.language}</span>
+                <span className="font-bold">{t("language")}</span>
 
-                <LanguageSelector
-                  language={language}
-                  onLanguageChange={onLanguageChange}
-                />
+                <LanguageSelector />
               </div>
 
               <div className="flex items-center justify-between py-5">
-                <span className="font-bold uppercase">{t.darkMode}</span>
+                <span className="font-bold uppercase">{t("darkMode")}</span>
 
                 <ThemeSwitch theme={theme} onToggleTheme={onToggleTheme} />
               </div>
@@ -168,7 +161,7 @@ export default function AlpacaHeader({
         <div>
           <div className="mb-6 flex items-center justify-between">
             <h2 id="settings-title" className="text-2xl font-bold">
-              {t.settings}
+              {t("settings")}
             </h2>
 
             <button
@@ -194,18 +187,15 @@ export default function AlpacaHeader({
 
           <div className="border-t border-[#2b2c34]/15 dark:border-white/15">
             <div className="flex items-center justify-between gap-4 py-5">
-              <span className="font-bold">{t.language}</span>
+              <span className="font-bold">{t("language")}</span>
 
-              <LanguageSelector
-                language={language}
-                onLanguageChange={onLanguageChange}
-              />
+              <LanguageSelector />
             </div>
 
             <div className="border-t border-[#2b2c34]/15 dark:border-white/15" />
 
             <div className="flex items-center justify-between gap-4 py-5">
-              <span className="font-bold">{t.darkMode}</span>
+              <span className="font-bold">{t("darkMode")}</span>
 
               <ThemeSwitch theme={theme} onToggleTheme={onToggleTheme} />
             </div>

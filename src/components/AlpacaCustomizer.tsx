@@ -1,36 +1,32 @@
-import {
-  translations,
-  optionTranslations,
-  type Language,
-} from "../data/translations";
-
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   categoryOrder,
   type AlpacaCategory,
   type AlpacaConfig,
 } from "../data/alpaca";
+
 import { alpacaOptions } from "../data/alpacaOptions";
 
 type AlpacaCustomizerProps = {
   alpacaConfig: AlpacaConfig;
   onOptionChange: (category: AlpacaCategory, option: string) => void;
-  language: Language;
 };
 
 export default function AlpacaCustomizer({
   alpacaConfig,
   onOptionChange,
-  language,
 }: AlpacaCustomizerProps) {
   const [activeCategory, setActiveCategory] = useState<AlpacaCategory>("hair");
-  const t = translations[language];
+
+  const { t } = useTranslation();
 
   const options = alpacaOptions[activeCategory];
 
   return (
     <section className="w-full">
-      <h2 className="mb-4 text-xl font-bold uppercase">{t.customize}</h2>
+      <h2 className="mb-4 text-xl font-bold uppercase">{t("customize")}</h2>
 
       <div className="flex flex-wrap gap-3">
         {categoryOrder.map((category) => (
@@ -45,12 +41,12 @@ export default function AlpacaCustomizer({
                 : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
-            {t.categories[category]}
+            {t(`categories.${category}`)}
           </button>
         ))}
       </div>
 
-      <h2 className="mb-4 mt-8 text-xl font-bold uppercase">{t.styles}</h2>
+      <h2 className="mb-4 mt-8 text-xl font-bold uppercase">{t("styles")}</h2>
 
       <div className="flex flex-wrap gap-3">
         {options.map((option) => (
@@ -65,11 +61,12 @@ export default function AlpacaCustomizer({
                 : "border-[#2b2c34] text-[#2b2c34] hover:border-[#6246ea] hover:bg-[#6246ea] hover:text-white dark:border-white/50 dark:text-[#f5f5f5] dark:hover:border-[#6246ea] dark:hover:bg-[#6246ea] dark:hover:text-white"
             }`}
           >
-            {optionTranslations[language][option] ??
-              option
+            {t(`options.${option}`, {
+              defaultValue: option
                 .replace("darkblue", "dark blue")
                 .replace(/([a-z])(\d)/g, "$1 $2")
-                .replaceAll("-", " ")}
+                .replaceAll("-", " "),
+            })}
           </button>
         ))}
       </div>
